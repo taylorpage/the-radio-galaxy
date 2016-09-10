@@ -1,6 +1,6 @@
 import React from 'react';
-import Nav from '../nav/Nav';
-import Media from '../media/Media';
+import Nav from '../../components/nav/Nav';
+import Media from '../../components/media/Media';
 
 export default class Main extends React.Component {
   constructor(props){
