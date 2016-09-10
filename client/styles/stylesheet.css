@@ -1,0 +1,33 @@
+@font-face {
+  font-family: 'space';
+  src: url('./fonts/WCManoNegraBta.ttf') format('truetype');
+}
+
+body {
+  background: url('./TheRadioGalaxy.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.title {
+  color: white;
+  margin: 8vh;
+  font-family: 'space';
+  font-size: 130px;
+  text-shadow: 2px 2px 1px black;
+}
+
+.navbar {
+  background-color: rgb(10,10,10);
+}
+
+.navbar .logo {
+  font-family: 'space';
+}
+
+.white {
+  color: white;
+  text-decoration: none !important;
+}
