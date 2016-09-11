@@ -9,25 +9,8 @@ export default class Media extends React.Component {
     this.state = {
       genre: '',
       query: '',
-      concerts: [],
-      lat: 0.0,
-      long: 0.0
+      concerts: []
     }
-  }
-
-  componentDidMount() {
-    navigator.geolocation.getCurrentPosition(position => {
-      this.setState({
-        lat: position.coords.latitude.toString(),
-        long: position.coords.longitude.toString()
-      });
-    });
-  }
-
-  handleGenreChange() {
-    this.setState({
-      genre: document.getElementById('genre').value
-    });
   }
 
   handleQueryChange() {
@@ -43,6 +26,7 @@ export default class Media extends React.Component {
         concerts: response.data
       })
     })
+    document.getElementById('query').value = '';
   }
 
   render() {
