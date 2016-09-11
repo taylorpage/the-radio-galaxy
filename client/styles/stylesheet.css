@@ -14,7 +14,7 @@ body {
   font-family: 'Jura';
 }
 
-.title {
+.main .title {
   color: white;
   margin: 8vh;
   font-family: 'space';
@@ -37,4 +37,15 @@ body {
 
 .media-body {
   background-color: white;
+  padding: 20px;
+}
+
+.concert {
+  font-size: 10px;
+  padding: 4px;
+}
+
+.concert .title {
+  font-size: 12px;
+  text-decoration: underline;
 }
