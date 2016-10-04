@@ -4,9 +4,9 @@ module.exports = {
 
   //Create a new admin account
 
-  create: (req, callback) => {
+  create: (url, callback) => {
     Track.create({
-      url: req.body.url
+      url: url
     }, (err, data) => {
       callback(data);
     });

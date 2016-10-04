@@ -12,8 +12,15 @@ module.exports = function(app, express) {
     });
   })
 
-  app.get('/tracks', function(req, res) {
+  app.get('/tracks/get', function(req, res) {
     trackController.getAll(function(data) {
+      res.status(200).send(data);
+    })
+  })
+  app.post('/tracks/create', function(req, res) {
+    let url = req.body.url;
+
+    trackController.create(url, function(data) {
       res.status(200).send(data);
     })
   })

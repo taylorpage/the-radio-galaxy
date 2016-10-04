@@ -1,16 +1,31 @@
 import React from 'react';
 import ReactPlayer from 'react-player';
+import axios from 'axios';
+
+const path = 'http://127.0.0.1:3000'
 
 export default class UploadField extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      tracks: [
-        { url: 'https://soundcloud.com/taylorpage/got-to-be-loved' },
-        { url: 'https://soundcloud.com/taylorpage/got-to-be-loved' },
-        { url: 'https://soundcloud.com/taylorpage/got-to-be-loved' }
-      ]
+      tracks: []
     }
+  }
+
+  componentDidMount() {
+    const context = this;
+
+    axios.get('/tracks/get', function(data) {
+      return data;
+    }).then(function(data) {
+      context.setState({
+        tracks: data.data
+      })
+    })
+  }
+
+  theState() {
+    console.log(this.state);
   }
 
   render() {
@@ -29,6 +44,7 @@ export default class UploadField extends React.Component {
           })
         }
         </div>
+        <button onClick={ this.theState.bind(this) }>Log State</button>
       </div>
     )
   }

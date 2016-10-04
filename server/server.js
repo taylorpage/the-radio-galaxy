@@ -23,8 +23,6 @@ app.get('*', function(request,response){
   response.sendFile(path.resolve(__dirname, '../client', 'index.html'));
 });
 
-
-
 const port = process.env.PORT || 3000;
 
 // For development, webpack willbe used
