@@ -18,8 +18,11 @@ export default class Media extends React.Component {
           <div className="row">
             <div className="media-body">
               <h1>Media</h1>
-              <div className="col-xs-10">
+              <div className="col-xs-6">
                 <UploadField />
+              </div>
+              <div className="col-xs-4">
+
               </div>
               <div className="col-xs-2">
                 <ConcertSearch />
