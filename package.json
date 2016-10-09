@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/taylorpage/leiflet.git"
+    "url": "git+https://github.com/taylorpage/the-radio-galaxy.git"
   },
   "author": "Taylor Page",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/taylorpage/leiflet/issues"
+    "url": "https://github.com/taylorpage/the-radio-galaxy/issues"
   },
-  "homepage": "https://github.com/taylorpage/leiflet#readme",
+  "homepage": "https://github.com/taylorpage/the-radio-galaxy#readme",
   "dependencies": {
     "axios": "^0.13.1",
     "babel": "^6.5.2",

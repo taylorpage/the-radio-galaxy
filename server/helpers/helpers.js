@@ -1,5 +1,4 @@
 const request = require('request');
-const apikey = require('../config/config');
 /* All Helper Functions Belong Here
    Use callbacks to return values back to the routes */
 

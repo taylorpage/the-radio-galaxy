@@ -1,4 +1,4 @@
-@import 'https://fonts.googleapis.com/css?family=Jura';
+@import 'https://fonts.googleapis.com/css?family=Roboto';
 
 @font-face {
   font-family: 'space';
@@ -11,7 +11,7 @@ body {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  font-family: 'Jura';
+  font-family: 'Roboto';
 }
 
 .main .title {
@@ -48,4 +48,22 @@ body {
 .concert .title {
   font-size: 12px;
   text-decoration: underline;
+}
+
+.upload button {
+  width: 100%;
+}
+
+.upload input {
+  width: 125%;
+}
+
+.upload-title {
+  margin-top: 10px;
+}
+
+.upload-error {
+  background-color: rgb(255, 80, 80);
+  color: white;
+  margin-bottom: 5px;
 }

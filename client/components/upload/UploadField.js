@@ -11,7 +11,8 @@ export default class UploadField extends React.Component {
       urlInput: '',
       nameInput: '',
       artistInput: '',
-      tracks: []
+      tracks: [],
+      errors: []
     }
   }
 
@@ -45,42 +46,76 @@ export default class UploadField extends React.Component {
       name: this.state.nameInput,
       artist: this.state.artistInput
     }
-    axios.post('/tracks/create', req, function(data) {
 
-    }).then(this.getTracks.bind(this));
+    if ( req.url && req.name && req.artist ) {
+      if ( req.url.substring(0, 4) === 'http') {
+        axios.post('/tracks/create', req, function(data) {
+
+        }).then(this.getTracks.bind(this));
+
+        this.setState({
+          errors: []
+        })
+      } else {
+        this.setState({
+          errors: [{ text: 'Please use valid url' }]
+        })
+      }
+    } else {
+      this.setState({
+        errors: [{ text: 'Please fill out all fields' }]
+      })
+    }
   }
 
   render() {
     return (
-      <div>
-        <input onChange={ this.handleChange.bind(this) }
-               id="name-input"
-               type="text"
-               placeholder="Track Name">
-        </input><br/>
-        <input onChange={ this.handleChange.bind(this) }
-               id="artist-input"
-               type="text"
-               placeholder="Artist Name">
-        </input><br/>
-        <input onChange={ this.handleChange.bind(this) }
-               id="url-input"
-               type="text"
-               placeholder="Soundcloud Link">
-        </input><br/>
-        <button onClick={ this.uploadTrack.bind(this) }>Upload</button>
-        <h3>Newest Uploads</h3>
+      <div className="container">
         <div> {
-          this.state.tracks.map(track => {
-            return(
-              <ReactPlayer url={ track.url }
-                controls={ true }
-                height={ 180 }
-                width="100%"
-              />
+          this.state.errors.map(error => {
+            return (
+              <div className="upload-error"> { error.text } </div>
             )
-          }).reverse()
-        }
+          })
+        } </div>
+        <div className="row">
+          <div className="col-md-3 text-center upload">
+            <input onChange={ this.handleChange.bind(this) }
+                   id="name-input"
+                   type="text"
+                   placeholder="Track Name">
+            </input>
+          </div>
+          <div className="col-md-3 text-center upload">
+            <input onChange={ this.handleChange.bind(this) }
+                   id="artist-input"
+                   type="text"
+                   placeholder="Artist Name">
+            </input>
+          </div>
+          <div className="col-md-3 text-center upload">
+            <input onChange={ this.handleChange.bind(this) }
+                   id="url-input"
+                   type="text"
+                   placeholder="Track Link">
+            </input>
+          </div>
+          <div className="col-md-3 upload">
+            <button onClick={ this.uploadTrack.bind(this) }>Upload</button>
+          </div>
+        </div>
+          <h3 className="upload-title">Newest Uploads</h3>
+          <div> {
+            this.state.tracks.map(track => {
+              return(
+                <ReactPlayer url={ track.url }
+                  controls={ true }
+                  height={ 180 }
+                  width="100%"
+                />
+              )
+            }).reverse()
+          }
         </div>
       </div>
     )

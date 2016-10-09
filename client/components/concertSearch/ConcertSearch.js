@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import apikey from '../../../server/config/config'
 
 export default class Media extends React.Component {
   constructor(props){
