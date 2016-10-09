@@ -19,8 +19,10 @@ module.exports = function(app, express) {
   })
   app.post('/tracks/create', function(req, res) {
     let url = req.body.url;
+    let name = req.body.name;
+    let artist = req.body.artist;
 
-    trackController.create(url, function(data) {
+    trackController.create(url, name, artist, function(data) {
       res.status(200).send(data);
     })
   })

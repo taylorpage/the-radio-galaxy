@@ -9,6 +9,8 @@ export default class UploadField extends React.Component {
     super(props);
     this.state = {
       urlInput: '',
+      nameInput: '',
+      artistInput: '',
       tracks: []
     }
   }
@@ -31,12 +33,18 @@ export default class UploadField extends React.Component {
 
   handleChange() {
     this.setState({
-      urlInput: document.getElementById('url-input').value
+      urlInput: document.getElementById('url-input').value,
+      nameInput: document.getElementById('name-input').value,
+      artistInput: document.getElementById('artist-input').value
     });
   }
 
   uploadTrack(url) {
-    let req = { url: this.state.urlInput }
+    let req = {
+      url: this.state.urlInput,
+      name: this.state.nameInput,
+      artist: this.state.artistInput
+    }
     axios.post('/tracks/create', req, function(data) {
 
     }).then(this.getTracks.bind(this));
@@ -45,7 +53,21 @@ export default class UploadField extends React.Component {
   render() {
     return (
       <div>
-        <input onChange={ this.handleChange.bind(this) } id="url-input" type="text"></input>
+        <input onChange={ this.handleChange.bind(this) }
+               id="name-input"
+               type="text"
+               placeholder="Track Name">
+        </input><br/>
+        <input onChange={ this.handleChange.bind(this) }
+               id="artist-input"
+               type="text"
+               placeholder="Artist Name">
+        </input><br/>
+        <input onChange={ this.handleChange.bind(this) }
+               id="url-input"
+               type="text"
+               placeholder="Soundcloud Link">
+        </input><br/>
         <button onClick={ this.uploadTrack.bind(this) }>Upload</button>
         <h3>Newest Uploads</h3>
         <div> {

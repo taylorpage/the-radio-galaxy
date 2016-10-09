@@ -2,9 +2,11 @@ const Track = require('../models/track');
 
 module.exports = {
 
-  create: (url, callback) => {
+  create: (url, name, artist, callback) => {
     Track.create({
-      url: url
+      url: url,
+      name: name,
+      artist: artist
     }, (err, data) => {
       callback(data);
     });
