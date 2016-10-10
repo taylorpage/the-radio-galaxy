@@ -2,7 +2,7 @@ const User = require('../models/user');
 
 module.exports = {
   create: (req, callback) => {
-    Track.create({
+    User.create({
       name: req.body.name,
       website: req.body.website,
       location: req.body.location,

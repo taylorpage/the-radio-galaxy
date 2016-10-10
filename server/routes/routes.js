@@ -1,5 +1,6 @@
 const helpers = require('../helpers/helpers');
-const trackController = require('../db/controllers/trackController')
+const trackController = require('../db/controllers/trackController');
+const userController = require('../db/controllers/userController')
 
 module.exports = function(app, express) {
   app.post('/concertSearch', function(req, res) {
@@ -23,6 +24,11 @@ module.exports = function(app, express) {
     let artist = req.body.artist;
 
     trackController.create(url, name, artist, function(data) {
+      res.status(200).send(data);
+    })
+  })
+  app.post('/user/create', function(req, res) {
+    userController.create(req, function(data) {
       res.status(200).send(data);
     })
   })
