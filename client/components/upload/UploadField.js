@@ -73,8 +73,15 @@ export default class UploadField extends React.Component {
         axios.post('/tracks/create', req, data => {
         }).then(this.getTracks.bind(this));
 
+        document.getElementById('url-input').value = '';
+        document.getElementById('name-input').value = '';
+        document.getElementById('artist-input').value = '';
+
         this.setState({
-          errors: []
+          errors: [],
+          urlInput: '',
+          nameInput: '',
+          artistInput: ''
         })
       } else {
         this.setState({
