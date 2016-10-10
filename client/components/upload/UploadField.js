@@ -28,7 +28,7 @@ export default class UploadField extends React.Component {
       return data;
     }).then(function(data) {
       context.setState({
-        tracks: data.data
+        tracks: data.data.reverse()
       })
     }).then(() => {
       this.getPages();
@@ -42,7 +42,7 @@ export default class UploadField extends React.Component {
     let results = [];
     context.state.tracks.reduce((memo, item, i) => {
       memo.push(item);
-      if ( (i + 1) % 10 === 0 || i === context.state.tracks.length - 1) {
+      if ( (i + 1) % 10 === 0 || i === context.state.tracks.length - 1 ) {
         results.push(memo);
         memo = [];
       }
@@ -141,7 +141,7 @@ export default class UploadField extends React.Component {
                 width="100%"
               />
             )
-          }).reverse()
+          })
         } </div>
         <div> {
           this.state.pages.map((item, i) => {
