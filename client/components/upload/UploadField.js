@@ -71,7 +71,6 @@ export default class UploadField extends React.Component {
     if ( req.url && req.name && req.artist ) {
       if ( req.url.substring(0, 4) === 'http') {
         axios.post('/tracks/create', req, data => {
-
         }).then(this.getTracks.bind(this));
 
         this.setState({
@@ -135,18 +134,27 @@ export default class UploadField extends React.Component {
         <div> {
           this.state.pages[this.state.trackPage].map(track => {
             return(
-              <ReactPlayer url={ track.url }
-                controls={ true }
-                height={ 180 }
-                width="100%"
-              />
+              <div className="col-md-12">
+                <div className="row">
+                  <h4>{ track.name }</h4>
+                  <h5>{ track.artist }</h5>
+                  <a href={ track.url }>{ track.url }</a>
+                  <ReactPlayer url={ track.url }
+                    controls={ true }
+                    height={ 180 }
+                    width="100%"
+                  />
+                </div>
+              </div>
             )
           })
         } </div>
-        <div> {
+        <div className="col-md-12 text-center"> {
           this.state.pages.map((item, i) => {
             return (
-              <button onClick={ this.changeTrackPage.bind(this, i) }>{ i + 1 }</button>
+              <button className="track-pages"
+                      onClick={ this.changeTrackPage.bind(this, i) }>{ i + 1 }
+              </button>
             )
           })
         } </div>
