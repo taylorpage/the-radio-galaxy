@@ -12,7 +12,9 @@ export default class UploadField extends React.Component {
       nameInput: '',
       artistInput: '',
       tracks: [],
-      errors: []
+      pages: [[]],
+      errors: [],
+      trackPage: 0
     }
   }
 
@@ -22,13 +24,32 @@ export default class UploadField extends React.Component {
 
   getTracks() {
     const context = this;
-    axios.get('/tracks/get', function(data) {
+    axios.get('/tracks/get', data => {
       return data;
     }).then(function(data) {
       context.setState({
         tracks: data.data
       })
-      console.log(data.data);
+    }).then(() => {
+      this.getPages();
+    }).then(() => {
+      console.log(this.state.pages)
+    })
+  }
+
+  getPages() {
+    const context = this;
+    let results = [];
+    context.state.tracks.reduce((memo, item, i) => {
+      memo.push(item);
+      if ( (i + 1) % 10 === 0 || i === context.state.tracks.length - 1) {
+        results.push(memo);
+        memo = [];
+      }
+      return memo;
+    }, []);
+    context.setState({
+      pages: results
     })
   }
 
@@ -49,7 +70,7 @@ export default class UploadField extends React.Component {
 
     if ( req.url && req.name && req.artist ) {
       if ( req.url.substring(0, 4) === 'http') {
-        axios.post('/tracks/create', req, function(data) {
+        axios.post('/tracks/create', req, data => {
 
         }).then(this.getTracks.bind(this));
 
@@ -66,6 +87,12 @@ export default class UploadField extends React.Component {
         errors: [{ text: 'Please fill out all fields' }]
       })
     }
+  }
+
+  changeTrackPage(page) {
+    this.setState({
+      trackPage: page
+    })
   }
 
   render() {
@@ -104,19 +131,25 @@ export default class UploadField extends React.Component {
             <button onClick={ this.uploadTrack.bind(this) }>Upload</button>
           </div>
         </div>
-          <h3 className="upload-title">Newest Uploads</h3>
-          <div> {
-            this.state.tracks.map(track => {
-              return(
-                <ReactPlayer url={ track.url }
-                  controls={ true }
-                  height={ 180 }
-                  width="100%"
-                />
-              )
-            }).reverse()
-          }
-        </div>
+        <h3 className="upload-title">Newest Uploads</h3>
+        <div> {
+          this.state.pages[this.state.trackPage].map(track => {
+            return(
+              <ReactPlayer url={ track.url }
+                controls={ true }
+                height={ 180 }
+                width="100%"
+              />
+            )
+          }).reverse()
+        } </div>
+        <div> {
+          this.state.pages.map((item, i) => {
+            return (
+              <button onClick={ this.changeTrackPage.bind(this, i) }>{ i + 1 }</button>
+            )
+          })
+        } </div>
       </div>
     )
   }

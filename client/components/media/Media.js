@@ -2,6 +2,7 @@ import React from 'react';
 import MediaNav from './Nav.js';
 import ConcertSearch from '../concertSearch/ConcertSearch';
 import UploadField from '../upload/UploadField';
+import Random from '../random/Random'
 
 export default class Media extends React.Component {
   constructor(props){
@@ -22,7 +23,7 @@ export default class Media extends React.Component {
                 <UploadField />
               </div>
               <div className="col-xs-4">
-
+                <Random />
               </div>
               <div className="col-xs-2">
                 <ConcertSearch />
