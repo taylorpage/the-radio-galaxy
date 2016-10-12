@@ -9,7 +9,6 @@ function createPassword(text) {
 
 function decodePassword(text, hash) {
   return bcrypt.compareSync(text, hash)
-  console.log('test')
 }
 
 module.exports = {
@@ -34,7 +33,7 @@ module.exports = {
 
   checkPassword: (req, callback) => {
     User.findOne({ email: req.body.email }, (err, data) => {
-      callback(decodePassword(req.body.email, data.password));
+      callback(decodePassword(req.body.password, data.password));
     })
   },
 
