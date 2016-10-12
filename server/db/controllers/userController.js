@@ -1,4 +1,16 @@
 const User = require('../models/user');
+const bcrypt = require('bcrypt');
+
+function createPassword(text) {
+  let salt = bcrypt.genSaltSync(10);
+  let hash = bcrypt.hashSync(text, salt);
+  return hash;
+}
+
+function decodePassword(text, hash) {
+  return bcrypt.compareSync(text, hash)
+  console.log('test')
+}
 
 module.exports = {
   create: (req, callback) => {
@@ -7,9 +19,27 @@ module.exports = {
       website: req.body.website,
       location: req.body.location,
       email: req.body.email,
-      password: req.body.password,
+      password: createPassword(req.body.password),
       tracks: []
     }, (err, data) => {
+      callback(data);
+    });
+  },
+
+  findUser: (req, callback) => {
+    User.find({ email: req.body.email }, (err, data) => {
+      callback(data);
+    })
+  },
+
+  checkPassword: (req, callback) => {
+    User.findOne({ email: req.body.email }, (err, data) => {
+      callback(decodePassword(req.body.email, data.password));
+    })
+  },
+
+  getAll: callback => {
+    User.find({}, (err, data) => {
       callback(data);
     });
   }
