@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactPlayer from 'react-player';
 import axios from 'axios';
+import { Link } from 'react-router';
 
 const path = 'http://127.0.0.1:3000'
 
@@ -107,7 +108,7 @@ export default class UploadField extends React.Component {
         <div> {
           this.state.errors.map(error => {
             return (
-              <div className="upload-error"> { error.text } </div>
+              <div className="error"> { error.text } </div>
             )
           })
         } </div>

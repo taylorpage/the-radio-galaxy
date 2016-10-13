@@ -62,12 +62,12 @@ body {
   margin-top: 10px;
 }
 
-.upload-error {
+.track-pages {
+  margin: 3px;
+}
+
+.error {
   background-color: rgb(255, 80, 80);
   color: white;
   margin-bottom: 5px;
-}
-
-.track-pages {
-  margin: 3px;
 }

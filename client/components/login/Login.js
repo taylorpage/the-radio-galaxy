@@ -9,6 +9,7 @@ export default class Login extends React.Component {
     this.state = {
       email: '',
       password: '',
+      errors: []
     }
   }
 
@@ -26,8 +27,12 @@ export default class Login extends React.Component {
   login() {
     axios.post('/user/login', this.state).then((data) => {
       if (data.data) {
-        sessionStorage.setItem('email', this.state.email )
-        //save email to session
+        sessionStorage.setItem('email', this.state.email)
+        window.location = path;
+      } else {
+        this.setState({
+          errors: [{ text: 'Email or password is incorrect!'}]
+        })
       }
     })
   }
@@ -36,6 +41,13 @@ export default class Login extends React.Component {
     return (
       <div>
         <h3 className="white space">LOGIN</h3>
+        <div> {
+          this.state.errors.map(error => {
+            return (
+              <div className="error"> { error.text } </div>
+            )
+          })
+        } </div>
         <input type="text"
                id="email"
                placeholder="email"
