@@ -13,7 +13,7 @@ module.exports = function(app, express) {
     });
   })
 
-  app.get('/tracks/get', function(req, res) {
+  app.get('/tracks/all', function(req, res) {
     trackController.getAll(data => {
       res.status(200).send(data);
     })
@@ -37,8 +37,8 @@ module.exports = function(app, express) {
       res.status(200).send(data);
     })
   })
-  app.post('/user/checkPassword', (req, res) => {
-    userController.checkPassword(req, data => {
+  app.post('/user/login', (req, res) => {
+    userController.login(req, data => {
       res.status(200).send(data);
     })
   })

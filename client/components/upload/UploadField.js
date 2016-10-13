@@ -24,7 +24,7 @@ export default class UploadField extends React.Component {
 
   getTracks() {
     const context = this;
-    axios.get('/tracks/get', data => {
+    axios.get('/tracks/all', data => {
       return data;
     }).then(function(data) {
       context.setState({
@@ -143,9 +143,10 @@ export default class UploadField extends React.Component {
             return(
               <div className="col-md-12">
                 <div className="row">
-                  <h4>{ track.name }</h4>
+                  <a href={ track.url }><h4>{ track.name }</h4></a>
                   <h5>{ track.artist }</h5>
-                  <a href={ track.url }>{ track.url }</a>
+                  <button>^</button>
+                  <button>v</button>
                   <ReactPlayer url={ track.url }
                     controls={ true }
                     height={ 180 }

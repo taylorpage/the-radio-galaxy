@@ -31,7 +31,7 @@ module.exports = {
     })
   },
 
-  checkPassword: (req, callback) => {
+  login: (req, callback) => {
     User.findOne({ email: req.body.email }, (err, data) => {
       callback(decodePassword(req.body.password, data.password));
     })
