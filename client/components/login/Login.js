@@ -26,7 +26,7 @@ export default class Login extends React.Component {
   login() {
     axios.post('/user/login', this.state).then((data) => {
       if (data.data) {
-        sessionStorage.setItem('email', this.state.email)
+        sessionStorage.setItem('user_email', this.state.email)
         window.location = path;
       } else {
         this.setState({
