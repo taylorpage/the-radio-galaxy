@@ -27,6 +27,11 @@ module.exports = function(app, express) {
       res.status(200).send(data);
     })
   })
+  app.post('/tracks/thumbs', (req, res) => {
+    trackController.thumbs(req, data => {
+      res.status(200).send(data);
+    })
+  })
   app.post('/user/create', (req, res) => {
     userController.create(req, data => {
       res.status(200).send(data);

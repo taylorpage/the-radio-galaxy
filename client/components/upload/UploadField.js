@@ -68,6 +68,9 @@ export default class UploadField extends React.Component {
       name: this.state.nameInput,
       artist: this.state.artistInput
     }
+    if (!sessionStorage.email) {
+      window.location = `${path}/login`;
+    }
 
     if ( req.url && req.name && req.artist ) {
       if ( req.url.substring(0, 4) === 'http') {

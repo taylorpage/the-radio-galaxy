@@ -26,14 +26,13 @@ module.exports = {
     let thumbs;
 
     Track.findOne({ url: req.body.url }, (err, track) => {
-      thumbs = track.thumbs;
         if ( req.body.status === 'up') {
           track.thumbs.up++;
         } else {
           track.thumbs.down++;
         }
-
-      Track.updateOne({ url: req.body.url }, { thumbs: thumbs }, (err, track) => {
+        thumbs = track.thumbs;
+      Track.update({ url: req.body.url }, { thumbs: thumbs }, (err, track) => {
         callback(track);
       })
     })

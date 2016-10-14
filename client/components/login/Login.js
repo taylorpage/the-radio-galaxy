@@ -14,7 +14,6 @@ export default class Login extends React.Component {
   }
 
   componentDidMount() {
-    this.getTracks();
   }
 
   handleChange() {
@@ -53,6 +52,7 @@ export default class Login extends React.Component {
                placeholder="email"
                onChange={ this.handleChange.bind(this) }>
         </input>
+        <br/>
         <input type="password"
                id="password"
                placeholder="password"
