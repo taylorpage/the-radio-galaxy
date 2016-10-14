@@ -33,8 +33,6 @@ export default class UploadField extends React.Component {
       })
     }).then(() => {
       this.getPages();
-    }).then(() => {
-      console.log(this.state.pages)
     })
   }
 
@@ -99,6 +97,18 @@ export default class UploadField extends React.Component {
     }
   }
 
+  thumbs(status, url) {
+    let req = {
+      status: status,
+      url: url
+    }
+
+    axios.post('/tracks/thumbs', req, data => {
+    }).then(() => {
+      this.getTracks();
+    })
+  }
+
   changeTrackPage(page) {
     this.setState({
       trackPage: page
@@ -149,8 +159,8 @@ export default class UploadField extends React.Component {
                 <div className="row">
                   <a href={ track.url }><h4>{ track.name }</h4></a>
                   <h5>{ track.artist }</h5>
-                  <button>^</button>
-                  <button>v</button>
+                  <button onClick={ this.thumbs.bind(this, 'up', track.url) }>up { track.thumbs.up }</button>
+                  <button onClick={ this.thumbs.bind(this, 'down', track.url) }>down { track.thumbs.down }</button>
                   <ReactPlayer url={ track.url }
                     controls={ true }
                     height={ 180 }
