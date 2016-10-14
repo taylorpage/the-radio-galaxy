@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 
 const TrackSchema = new mongoose.Schema({
+  name: String,
+  artist: String,
   url: String,
   thumbs: {
     up: 0,

@@ -14,6 +14,7 @@ export default class Random extends React.Component {
 
   componentDidMount() {
     this.getTracks();
+    sessionStorage.setItem('user_email', 'test@test.com');
   }
 
   getTracks() {
@@ -41,6 +42,8 @@ export default class Random extends React.Component {
           this.state.tracks.map(track => {
             return(
               <div className="col-xs-6">
+              <h4> { track.name } </h4>
+              <h5> { track.artist } </h5>
               <ReactPlayer url={ track.url }
                 controls={ true }
                 height={ 120 }
