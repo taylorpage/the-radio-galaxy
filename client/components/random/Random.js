@@ -14,7 +14,6 @@ export default class Random extends React.Component {
 
   componentDidMount() {
     this.getTracks();
-    sessionStorage.setItem('user_email', 'test@test.com');
   }
 
   getTracks() {
