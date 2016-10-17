@@ -26,7 +26,7 @@ module.exports = {
   },
 
   findUser: (req, callback) => {
-    User.find({ email: req.body.email }, (err, data) => {
+    User.findOne({ email: req.body.email }, (err, data) => {
       callback(data);
     })
   },
@@ -34,6 +34,14 @@ module.exports = {
   login: (req, callback) => {
     User.findOne({ email: req.body.email }, (err, data) => {
       callback(decodePassword(req.body.password, data.password));
+    })
+  },
+
+  checkEmailsForDuplicates: (req, callback) => {
+    User.findOne({ email: req.body.email }, (err, data) => {
+      return data
+    }).then((data) => {
+      callback(data ? true : false);
     })
   },
 

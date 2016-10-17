@@ -52,4 +52,9 @@ module.exports = function(app, express) {
       res.status(200).send(data);
     })
   })
+  app.post('/user/checkEmails', (req, res) => {
+    userController.checkEmailsForDuplicates(req, data => {
+      res.status(200).send(data);
+    })
+  })
 }
