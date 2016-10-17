@@ -98,16 +98,22 @@ export default class UploadField extends React.Component {
   }
 
   thumbs(status, url) {
-    if (sessionStorage.getItem('user_email')) {
+    let email = sessionStorage.getItem('user_email')
+    if (email) {
       let req = {
         status: status,
         url: url
       }
 
-      axios.post('/tracks/thumbs', req, data => {
-      }).then(() => {
-        this.getTracks();
+      axios.post('/user/getUser', { email: email }, data => {
+        return data.data
+      }).then(data => {
+        console.log(data)
       })
+      // axios.post('/tracks/thumbs', req, data => {
+      // }).then(() => {
+      //   this.getTracks();
+      // })
     } else {
       window.location = `${path}/login`;
     }

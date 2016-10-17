@@ -38,8 +38,10 @@ export default class Login extends React.Component {
 
   render() {
     return (
-      <div>
-        <h3 className="white space">LOGIN</h3>
+      <div className="container">
+        <div className="row">
+        <div className="text-xs-center form">
+        <h1 className="white space">LOGIN</h1>
         <div> {
           this.state.errors.map(error => {
             return (
@@ -58,7 +60,12 @@ export default class Login extends React.Component {
                placeholder="password"
                onChange={ this.handleChange.bind(this) }>
         </input>
-        <button onClick={ this.login.bind(this)  }>Login</button>
+        <br/>
+        <button onClick={ this.login.bind(this) }>Login</button>
+        <br/>
+        <a href="/signup">or sign up</a>
+        </div>
+        </div>
       </div>
     )
   }

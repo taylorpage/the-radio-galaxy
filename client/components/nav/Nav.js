@@ -29,6 +29,12 @@ export default class Nav extends React.Component {
     }
   }
 
+  signup() {
+    if (!sessionStorage.getItem('user_email')) {
+      window.location = `${path}/signup`
+    }
+  }
+
   render() {
     return (
       <div className="row">
@@ -38,7 +44,10 @@ export default class Nav extends React.Component {
              onClick={ this.toggle_login.bind(this) }> { 
             this.state.logged_in ? 'Sign Out' : 'Sign In'
           }</a>
-          <a className="col-md-1 white" href="#">Sign Up</a>
+          <a className="col-md-1 white"
+             onClick={ this.signup.bind(this) }>{ 
+            this.state.logged_in ? '' : 'Sign Up'
+          }</a>
         </div>
       </div>
     )
