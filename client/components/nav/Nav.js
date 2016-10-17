@@ -40,11 +40,11 @@ export default class Nav extends React.Component {
       <div className="row">
         <div className="col-md-12 navbar">
           <a className="col-md-2 text-md-left white space" href="#">The Radio Galaxy</a>
-          <a className="col-md-1 offset-md-8 white"
+          <a className="col-xs-1 offset-xs-8 white"
              onClick={ this.toggle_login.bind(this) }> { 
             this.state.logged_in ? 'Sign Out' : 'Sign In'
           }</a>
-          <a className="col-md-1 white"
+          <a className="col-xs-1 white"
              onClick={ this.signup.bind(this) }>{ 
             this.state.logged_in ? '' : 'Sign Up'
           }</a>

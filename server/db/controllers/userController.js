@@ -45,6 +45,12 @@ module.exports = {
     })
   },
 
+  updateVotes: (req, callback) => {
+    User.update({ email: req.body.email }, { votes: req.body.update }, {}, (err, data) => {
+      callback(data);
+    })
+  },
+
   getAll: callback => {
     User.find({}, (err, data) => {
       callback(data);

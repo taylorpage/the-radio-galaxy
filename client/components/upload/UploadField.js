@@ -66,7 +66,7 @@ export default class UploadField extends React.Component {
       name: this.state.nameInput,
       artist: this.state.artistInput
     }
-    if (!sessionStorage.email) {
+    if (!sessionStorage.getItem('user_email')) {
       window.location = `${path}/login`;
     }
 
@@ -100,7 +100,7 @@ export default class UploadField extends React.Component {
   thumbs(status, url) {
     let email = sessionStorage.getItem('user_email')
     if (email) {
-      let req = {
+      let firstRequest = {
         status: status,
         url: url
       }
@@ -108,12 +108,28 @@ export default class UploadField extends React.Component {
       axios.post('/user/getUser', { email: email }, data => {
         return data.data
       }).then(data => {
-        console.log(data)
+        let foundLink = false;
+        data.data.votes.forEach(link => {
+          if (link === url) {
+            foundLink = true;
+          }
+        })
+        if (!foundLink) {
+          let secondRequest = {
+            email: email,
+            update: data.data.votes.concat(url)
+          }
+          axios.post('/user/updateVotes', secondRequest, (data) => {
+          }).then(() => {
+            axios.post('/tracks/thumbs', firstRequest, data => {
+            }).then(() => {
+              this.getTracks();
+            })
+          })
+        } else {
+          console.log('didnt work')
+        }
       })
-      // axios.post('/tracks/thumbs', req, data => {
-      // }).then(() => {
-      //   this.getTracks();
-      // })
     } else {
       window.location = `${path}/login`;
     }

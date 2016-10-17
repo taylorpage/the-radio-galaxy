@@ -13,9 +13,6 @@ export default class Login extends React.Component {
     }
   }
 
-  componentDidMount() {
-  }
-
   handleChange() {
     this.setState({
       email: document.getElementById('email').value,
@@ -40,31 +37,31 @@ export default class Login extends React.Component {
     return (
       <div className="container">
         <div className="row">
-        <div className="text-xs-center form">
-        <h1 className="white space">LOGIN</h1>
-        <div> {
-          this.state.errors.map(error => {
-            return (
-              <div className="error"> { error.text } </div>
-            )
-          })
-        } </div>
-        <input type="text"
-               id="email"
-               placeholder="email"
-               onChange={ this.handleChange.bind(this) }>
-        </input>
-        <br/>
-        <input type="password"
-               id="password"
-               placeholder="password"
-               onChange={ this.handleChange.bind(this) }>
-        </input>
-        <br/>
-        <button onClick={ this.login.bind(this) }>Login</button>
-        <br/>
-        <a href="/signup">or sign up</a>
-        </div>
+          <div className="text-xs-center form">
+          <h1 className="white space">LOGIN</h1>
+          <div> {
+            this.state.errors.map(error => {
+              return (
+                <div className="error"> { error.text } </div>
+              )
+            })
+          } </div>
+          <input type="text"
+                 id="email"
+                 placeholder="email"
+                 onChange={ this.handleChange.bind(this) }>
+          </input>
+            <br/>
+          <input type="password"
+                 id="password"
+                 placeholder="password"
+                 onChange={ this.handleChange.bind(this) }>
+          </input>
+            <br/>
+          <button onClick={ this.login.bind(this) }>Login</button>
+            <br/>
+          <a href="/signup">or sign up</a>
+          </div>
         </div>
       </div>
     )

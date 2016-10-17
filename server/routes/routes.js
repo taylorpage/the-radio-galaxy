@@ -57,4 +57,9 @@ module.exports = function(app, express) {
       res.status(200).send(data);
     })
   })
+  app.post('/user/updateVotes', (req, res) => {
+    userController.updateVotes(req, data => {
+      res.status(200).send(data);
+    })
+  })
 }
