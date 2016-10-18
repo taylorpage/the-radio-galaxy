@@ -1,9 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 
-const path = 'http://127.0.0.1:3000'
+const path = 'http://127.0.0.1:3000';
 
-export default class Login extends React.Component {
+export default class Articles extends React.Component {
   constructor(props){
     super(props);
     this.state = {
@@ -134,53 +134,59 @@ export default class Login extends React.Component {
     }
   }
 
+  myFunction() {
+    document.getElementById("myArticleDropdown").classList.toggle("show");
+  }
+
   render() {
     return (
       <div className="container">
-        <div className="row">
-          <div className="col-md-12 text-md-center">
-            <h1 className="white space">Articles</h1>
-            <div> {
-              this.state.errors.map(error => {
-                return (
-                  <div className="error"> { error.text } </div>
-                )
-              })
-            } </div>
-            <div className="col-md-3 text-center upload">
-              <input onChange={ this.handleChange.bind(this) }
-                     id="article-url"
-                     type="text"
-                     placeholder="Article Url">
-              </input>
-            </div>
-            <div className="col-md-3 text-center upload">
-              <input onChange={ this.handleChange.bind(this) }
-                     id="article-description"
-                     type="text"
-                     placeholder="Description">
-              </input>
-            </div>
-            <div className="col-md-3 upload">
-              <button onClick={ this.uploadArticle.bind(this) }>Upload</button>
-            </div>
-              <div> {
-                this.state.pages[this.state.articlePage].map(article => {
-                  return(
-                    <div className="col-md-12">
-                      <div className="row">
-                        <a href={ article.url }><h4>{ article.url }</h4></a>
-                        <p>{ article.description }</p>
-                        <button onClick={ this.thumbs.bind(this, 'up', article.url) }>up { article.thumbs.up }</button>
-                        <button onClick={ this.thumbs.bind(this, 'down', article.url) }>down { article.thumbs.down }</button>
-                      </div>
-                    </div>
-                  )
-                })
-              } </div>
+        <div> {
+          this.state.errors.map(error => {
+            return ( <div className="error"> { error.text } </div> )
+          })
+        } </div>
+        <div className="row dropdown dropelem">
+          <button onClick={this.myFunction.bind(this) } className="dropbtn dropelem">Submit Article</button>
+          <div id="myArticleDropdown" className="dropdown-content dropelem text-md-center">
+          <div className="col-md-12 upload dropelem">
+            <input onChange={ this.handleChange.bind(this) }
+                   id="article-url"
+                   type="text"
+                   className="dropelem"
+                   placeholder="Article Url">
+            </input>
+          </div>
+          <div className="col-md-12 upload dropelem">
+            <input onChange={ this.handleChange.bind(this) }
+                   id="article-description"
+                   type="text"
+                   className="dropelem"
+                   placeholder="Description">
+            </input>
+          </div>
+          <div className="col-md-12 upload dropelem">
+            <button onClick={ this.uploadArticle.bind(this) }>Upload</button>
+          </div>
           </div>
         </div>
-        <div className="col-md-12 text-center"> {
+        <h3>Articles</h3>
+        <div> {
+          this.state.pages[this.state.articlePage].map(article => {
+            return(
+              <div className="col-md-12">
+                <div className="row">
+                  <a href={ article.url }><h4>{ article.url }</h4></a>
+                  <p>{ article.description }</p>
+                  <p onClick={ this.thumbs.bind(this, 'up', article.url) }>^</p>
+                  <p>{ article.thumbs }</p>
+                  <p onClick={ this.thumbs.bind(this, 'down', article.url) }>v</p>
+                </div>
+              </div>
+            )
+          })
+        } </div>
+        <div className="col-md-12"> {
           this.state.pages.map((item, i) => {
             return (
               <button className="article-pages"

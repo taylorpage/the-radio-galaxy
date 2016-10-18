@@ -141,6 +141,10 @@ export default class UploadField extends React.Component {
     })
   }
 
+  myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+  }
+
   render() {
     return (
       <div className="container">
@@ -151,30 +155,36 @@ export default class UploadField extends React.Component {
             )
           })
         } </div>
-        <div className="row">
-          <div className="col-md-3 text-center upload">
-            <input onChange={ this.handleChange.bind(this) }
-                   id="name-input"
-                   type="text"
-                   placeholder="Track Name">
-            </input>
-          </div>
-          <div className="col-md-3 text-center upload">
-            <input onChange={ this.handleChange.bind(this) }
-                   id="artist-input"
-                   type="text"
-                   placeholder="Artist Name">
-            </input>
-          </div>
-          <div className="col-md-3 text-center upload">
-            <input onChange={ this.handleChange.bind(this) }
-                   id="url-input"
-                   type="text"
-                   placeholder="Track Link">
-            </input>
-          </div>
-          <div className="col-md-3 upload">
-            <button onClick={ this.uploadTrack.bind(this) }>Upload</button>
+        <div className="row dropdown">
+          <button onClick={this.myFunction.bind(this) } className="dropbtn dropelem">Upload Track V</button>
+          <div id="myDropdown" className="dropdown-content text-md-center dropelem">
+            <div className="col-md-12 text-center upload dropelem">
+              <input onChange={ this.handleChange.bind(this) }
+                     id="name-input"
+                     type="text"
+                     className="dropelem"
+                     placeholder="Track Name">
+              </input>
+            </div>
+            <div className="col-md-12 text-center upload dropelem">
+              <input onChange={ this.handleChange.bind(this) }
+                     id="artist-input"
+                     type="text"
+                     className="dropelem"
+                     placeholder="Artist Name">
+              </input>
+            </div>
+            <div className="col-md-12 text-center upload dropelem">
+              <input onChange={ this.handleChange.bind(this) }
+                     id="url-input"
+                     type="text"
+                     className="dropelem"
+                     placeholder="Track Link">
+              </input>
+            </div>
+            <div className="col-md-12 upload dropelem">
+              <button onClick={ this.uploadTrack.bind(this) }>Upload</button>
+            </div>
           </div>
         </div>
         <h3 className="upload-title">Newest Uploads</h3>
@@ -185,8 +195,9 @@ export default class UploadField extends React.Component {
                 <div className="row">
                   <a href={ track.url }><h4>{ track.name }</h4></a>
                   <h5>{ track.artist }</h5>
-                  <button onClick={ this.thumbs.bind(this, 'up', track.url) }>up { track.thumbs.up }</button>
-                  <button onClick={ this.thumbs.bind(this, 'down', track.url) }>down { track.thumbs.down }</button>
+                  <p onClick={ this.thumbs.bind(this, 'up', track.url) }>^</p>
+                  <p>{ track.thumbs }</p>
+                  <p onClick={ this.thumbs.bind(this, 'down', track.url) }>v</p>
                   <ReactPlayer url={ track.url }
                     controls={ true }
                     height={ 180 }

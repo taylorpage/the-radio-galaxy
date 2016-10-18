@@ -6,10 +6,7 @@ module.exports = {
     Article.create({
       url: req.body.url,
       description: req.body.description,
-      thumbs: {
-        up: 0,
-        down: 0
-      }
+      thumbs: 0
     }, (err, data) => {
       callback(data);
     });
@@ -26,9 +23,9 @@ module.exports = {
 
     Article.findOne({ url: req.body.url }, (err, article) => {
       if ( req.body.status === 'up') {
-        article.thumbs.up++;
+        article.thumbs++;
       } else {
-        article.thumbs.down++;
+        article.thumbs--;
       }
       thumbs = article.thumbs;
       Article.update({ url: req.body.url }, { thumbs: thumbs }, {}, (err, article) => {

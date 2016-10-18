@@ -75,7 +75,7 @@ module.exports = function(app, express) {
     })
   })
   app.post('/articles/thumbs', (req, res) => {
-    trackController.thumbs(req, data => {
+    articleController.thumbs(req, data => {
       res.status(200).send(data);
     })
   })

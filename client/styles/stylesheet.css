@@ -51,11 +51,13 @@ body {
 }
 
 .upload button {
-  width: 100%;
+  width: 200px;
+  margin: 10px;
 }
 
 .upload input {
-  width: 125%;
+  width: 200px;
+  margin-top: 10px;
 }
 
 .upload-title {
@@ -79,4 +81,34 @@ body {
 
 .form h1 {
   margin-top: 15%;
+}
+
+.dropbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+    background-color: #3e8e41;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    z-index: 1000;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.show {
+  display:block;
 }
