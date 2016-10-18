@@ -26,12 +26,16 @@ body {
   background-color: rgb(30,30,30);
 }
 
+.pointer {
+  cursor: pointer;
+}
+
 .space {
   font-family: 'space';
 }
 
 .white {
-  color: white;
+  color: white !important;
   text-decoration: none !important;
 }
 
