@@ -188,12 +188,16 @@ export default class Articles extends React.Component {
           this.state.pages[this.state.articlePage].map(article => {
             return(
               <div className="col-md-12">
-                <div className="row">
+                <div className="row submission">
                   <a href={ article.url }><h4>{ article.title }</h4></a>
                   <p>{ article.description }</p>
-                  <p onClick={ this.thumbs.bind(this, 'up', article.url) }>^</p>
+                  <p onClick={ this.thumbs.bind(this, 'up', article.url) }
+                     className="arrow">^
+                  </p>
                   <p>{ article.thumbs }</p>
-                  <p onClick={ this.thumbs.bind(this, 'down', article.url) }>v</p>
+                  <p onClick={ this.thumbs.bind(this, 'down', article.url) }
+                     className="arrow">v
+                  </p>
                 </div>
               </div>
             )

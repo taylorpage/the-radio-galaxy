@@ -13,6 +13,8 @@ module.exports = function(app, express) {
       res.status(200).send(data);
     });
   })
+  
+  //TRACK ROUTES
 
   app.get('/tracks/all', function(req, res) {
     trackController.getAll(data => {
@@ -28,6 +30,14 @@ module.exports = function(app, express) {
       res.status(200).send(data);
     })
   })
+  app.post('/tracks/thumbs', (req, res) => {
+    trackController.thumbs(req, data => {
+      res.status(200).send(data);
+    })
+  })
+
+  //USER ROUTES
+
   app.post('/user/create', (req, res) => {
     userController.create(req, data => {
       res.status(200).send(data);
@@ -58,6 +68,9 @@ module.exports = function(app, express) {
       res.status(200).send(data);
     })
   })
+
+  //ARTICLE ROUTES
+
   app.get('/articles/all', (req, res) => {
     articleController.getAll(data => {
       res.status(200).send(data);
@@ -65,12 +78,6 @@ module.exports = function(app, express) {
   })
   app.post('/articles/create', (req, res) => {
     articleController.create(req, data => {
-      res.status(200).send(data);
-    })
-  })
-  //THUMBS
-  app.post('/tracks/thumbs', (req, res) => {
-    trackController.thumbs(req, data => {
       res.status(200).send(data);
     })
   })

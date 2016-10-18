@@ -192,12 +192,16 @@ export default class UploadField extends React.Component {
           this.state.pages[this.state.trackPage].map(track => {
             return(
               <div className="col-md-12">
-                <div className="row">
+                <div className="row submission">
                   <a href={ track.url }><h4>{ track.name }</h4></a>
                   <h5>{ track.artist }</h5>
-                  <p onClick={ this.thumbs.bind(this, 'up', track.url) }>^</p>
+                  <p onClick={ this.thumbs.bind(this, 'up', track.url) }
+                     className="arrow">^
+                  </p>
                   <p>{ track.thumbs }</p>
-                  <p onClick={ this.thumbs.bind(this, 'down', track.url) }>v</p>
+                  <p onClick={ this.thumbs.bind(this, 'down', track.url) }
+                     className="arrow">v
+                  </p>
                   <ReactPlayer url={ track.url }
                     controls={ true }
                     height={ 180 }
