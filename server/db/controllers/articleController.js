@@ -6,6 +6,7 @@ module.exports = {
     Article.create({
       url: req.body.url,
       description: req.body.description,
+      title: req.body.title,
       thumbs: 0
     }, (err, data) => {
       callback(data);

@@ -9,6 +9,7 @@ export default class Articles extends React.Component {
     this.state = {
       url: '',
       description: '',
+      title: '',
       articles: [],
       pages: [[]],
       errors: [],
@@ -23,7 +24,8 @@ export default class Articles extends React.Component {
   handleChange() {
     this.setState({
       url: document.getElementById('article-url').value,
-      description: document.getElementById('article-description').value
+      title: document.getElementById('article-title').value,
+      description: document.getElementById('article-description').value,
     });
   }
 
@@ -65,7 +67,8 @@ export default class Articles extends React.Component {
   uploadArticle() {
     let req = {
       url: this.state.url,
-      description: this.state.description
+      description: this.state.description,
+      title: this.state.title
     }
     if (!sessionStorage.getItem('user_email')) {
       window.location = `${path}/login`;
@@ -78,11 +81,13 @@ export default class Articles extends React.Component {
 
         document.getElementById('article-url').value = '';
         document.getElementById('article-description').value = '';
+        document.getElementById('article-title').value = '';
 
         this.setState({
           errors: [],
           url: '',
-          description: ''
+          description: '',
+          title: ''
         })
       } else {
         this.setState({
@@ -151,10 +156,10 @@ export default class Articles extends React.Component {
           <div id="myArticleDropdown" className="dropdown-content dropelem text-md-center">
           <div className="col-md-12 upload dropelem">
             <input onChange={ this.handleChange.bind(this) }
-                   id="article-url"
+                   id="article-title"
                    type="text"
                    className="dropelem"
-                   placeholder="Article Url">
+                   placeholder="Headline">
             </input>
           </div>
           <div className="col-md-12 upload dropelem">
@@ -163,6 +168,14 @@ export default class Articles extends React.Component {
                    type="text"
                    className="dropelem"
                    placeholder="Description">
+            </input>
+          </div>
+          <div className="col-md-12 upload dropelem">
+            <input onChange={ this.handleChange.bind(this) }
+                   id="article-url"
+                   type="text"
+                   className="dropelem"
+                   placeholder="Article Url">
             </input>
           </div>
           <div className="col-md-12 upload dropelem">
@@ -176,7 +189,7 @@ export default class Articles extends React.Component {
             return(
               <div className="col-md-12">
                 <div className="row">
-                  <a href={ article.url }><h4>{ article.url }</h4></a>
+                  <a href={ article.url }><h4>{ article.title }</h4></a>
                   <p>{ article.description }</p>
                   <p onClick={ this.thumbs.bind(this, 'up', article.url) }>^</p>
                   <p>{ article.thumbs }</p>
