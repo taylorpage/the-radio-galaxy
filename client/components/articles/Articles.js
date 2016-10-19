@@ -131,7 +131,14 @@ export default class Articles extends React.Component {
             })
           })
         } else {
-          console.log('didnt work')
+          this.setState({
+            errors: [{ text: 'Already voted'}]
+          })
+          setTimeout(() => {
+            this.setState({
+              errors: []
+            })
+          }, 2000)
         }
       })
     } else {

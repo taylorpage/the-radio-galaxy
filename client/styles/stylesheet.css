@@ -14,6 +14,13 @@ body {
   font-family: 'Ubuntu';
 }
 
+.social-buttons {
+  border-radius: 100px;
+  width: 60px;
+  height: 60px;
+  background-color: white;
+}
+
 .main .title {
   color: white;
   margin: 8vh;
