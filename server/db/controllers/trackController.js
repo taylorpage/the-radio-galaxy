@@ -33,5 +33,12 @@ module.exports = {
         callback(track);
       })
     })
+  },
+
+  checkTrackDuplicates: (req, callback) => {
+    Track.find({ url: req.body.url }, (err, data) => {
+      console.log(req.body.url)
+      callback(data);
+    })
   }
 }

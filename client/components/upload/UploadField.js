@@ -70,31 +70,42 @@ export default class UploadField extends React.Component {
       window.location = `${path}/login`;
     }
 
-    if ( req.url && req.name && req.artist ) {
-      if ( req.url.substring(0, 4) === 'http') {
-        axios.post('/tracks/create', req, data => {
-        }).then(this.getTracks.bind(this));
+    //AXIOS REQUEST
 
-        document.getElementById('url-input').value = '';
-        document.getElementById('name-input').value = '';
-        document.getElementById('artist-input').value = '';
-
-        this.setState({
-          errors: [],
-          urlInput: '',
-          nameInput: '',
-          artistInput: ''
-        })
+    axios.post('/tracks/duplicates', { url: req.url }, data => {
+      return data;
+    }).then((data) => {
+      if (data.data.length === 0) {
+        if ( req.url && req.name && req.artist ) {
+          if ( req.url.substring(0, 4) === 'http') {
+            axios.post('/tracks/create', req, data => {
+            }).then(this.getTracks.bind(this));
+            this.setState({
+              errors: [],
+              urlInput: '',
+              nameInput: '',
+              artistInput: ''
+            })
+          } else {
+            this.setState({
+              errors: [{ text: 'Please use valid url' }]
+            })
+          }
+        } else {
+          this.setState({
+            errors: [{ text: 'Please fill out all fields' }]
+          })
+        }
       } else {
         this.setState({
-          errors: [{ text: 'Please use valid url' }]
+          errors: [{ text: 'Track has already been uploaded' }]
         })
       }
-    } else {
-      this.setState({
-        errors: [{ text: 'Please fill out all fields' }]
-      })
-    }
+      //AXIOS REQUEST
+    })
+    document.getElementById('url-input').value = '';
+    document.getElementById('name-input').value = '';
+    document.getElementById('artist-input').value = '';
   }
 
   thumbs(status, url) {
@@ -187,26 +198,34 @@ export default class UploadField extends React.Component {
             </div>
           </div>
         </div>
+        
         <h3 className="upload-title">Newest Uploads</h3>
         <div> {
           this.state.pages[this.state.trackPage].map(track => {
             return(
               <div className="col-md-12">
                 <div className="row submission">
-                  <a href={ track.url }><h4>{ track.name }</h4></a>
-                  <h5>{ track.artist }</h5>
-                  <p onClick={ this.thumbs.bind(this, 'up', track.url) }
-                     className="arrow">^
-                  </p>
-                  <p>{ track.thumbs }</p>
-                  <p onClick={ this.thumbs.bind(this, 'down', track.url) }
-                     className="arrow">v
-                  </p>
-                  <ReactPlayer url={ track.url }
-                    controls={ true }
-                    height={ 180 }
-                    width="100%"
-                  />
+                  <div className="col-xs-1 thumbs text-xs-center">
+                    <div onClick={ this.thumbs.bind(this, 'up', track.url) }
+                       className="arrow">▲
+                    </div>
+                    <div>{ track.thumbs }</div>
+                    <div onClick={ this.thumbs.bind(this, 'down', track.url) }
+                       className="arrow">▼
+                    </div>
+                  </div>
+                  <div className="col-xs-11">
+                    <div className="row">
+                      <a href={ track.url }><h4>{ track.name }</h4></a>
+                      <h5>{ track.artist }</h5>
+                      <ReactPlayer url={ track.url }
+                        className="col-xs-12"
+                        controls={ true }
+                        height={ 150 }
+                        width="100%"
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
             )

@@ -196,15 +196,19 @@ export default class Articles extends React.Component {
             return(
               <div className="col-md-12">
                 <div className="row submission">
-                  <a href={ article.url }><h4>{ article.title }</h4></a>
-                  <p>{ article.description }</p>
-                  <p onClick={ this.thumbs.bind(this, 'up', article.url) }
-                     className="arrow">^
-                  </p>
-                  <p>{ article.thumbs }</p>
-                  <p onClick={ this.thumbs.bind(this, 'down', article.url) }
-                     className="arrow">v
-                  </p>
+                  <div className="col-xs-1 text-xs-center thumbs">
+                    <div onClick={ this.thumbs.bind(this, 'up', article.url) }
+                         className="arrow">▲
+                    </div>
+                    <div>{ article.thumbs }</div>
+                    <div onClick={ this.thumbs.bind(this, 'down', article.url) }
+                         className="arrow">▼
+                    </div>
+                  </div>
+                  <div className="col-md-11">
+                    <a href={ article.url }><h4>{ article.title }</h4></a>
+                    <div>{ article.description }</div>
+                  </div>
                 </div>
               </div>
             )

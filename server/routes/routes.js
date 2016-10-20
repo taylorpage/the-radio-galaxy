@@ -35,6 +35,11 @@ module.exports = function(app, express) {
       res.status(200).send(data);
     })
   })
+  app.post('/tracks/duplicates', (req, res) => {
+    trackController.checkTrackDuplicates(req, data => {
+      res.status(200).send(data);
+    })
+  })
 
   //USER ROUTES
 
