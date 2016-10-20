@@ -70,31 +70,42 @@ export default class UploadField extends React.Component {
       window.location = `${path}/login`;
     }
 
-    if ( req.url && req.name && req.artist ) {
-      if ( req.url.substring(0, 4) === 'http') {
-        axios.post('/tracks/create', req, data => {
-        }).then(this.getTracks.bind(this));
+    //AXIOS REQUEST
 
-        document.getElementById('url-input').value = '';
-        document.getElementById('name-input').value = '';
-        document.getElementById('artist-input').value = '';
-
-        this.setState({
-          errors: [],
-          urlInput: '',
-          nameInput: '',
-          artistInput: ''
-        })
+    axios.post('/tracks/duplicates', { url: req.url }, data => {
+      return data;
+    }).then((data) => {
+      if (data.data.length === 0) {
+        if ( req.url && req.name && req.artist ) {
+          if ( req.url.substring(0, 4) === 'http') {
+            axios.post('/tracks/create', req, data => {
+            }).then(this.getTracks.bind(this));
+            this.setState({
+              errors: [],
+              urlInput: '',
+              nameInput: '',
+              artistInput: ''
+            })
+          } else {
+            this.setState({
+              errors: [{ text: 'Please use valid url' }]
+            })
+          }
+        } else {
+          this.setState({
+            errors: [{ text: 'Please fill out all fields' }]
+          })
+        }
       } else {
         this.setState({
-          errors: [{ text: 'Please use valid url' }]
+          errors: [{ text: 'Track has already been uploaded' }]
         })
       }
-    } else {
-      this.setState({
-        errors: [{ text: 'Please fill out all fields' }]
-      })
-    }
+      //AXIOS REQUEST
+    })
+    document.getElementById('url-input').value = '';
+    document.getElementById('name-input').value = '';
+    document.getElementById('artist-input').value = '';
   }
 
   thumbs(status, url) {
@@ -141,6 +152,10 @@ export default class UploadField extends React.Component {
     })
   }
 
+  myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+  }
+
   render() {
     return (
       <div className="container">
@@ -151,47 +166,66 @@ export default class UploadField extends React.Component {
             )
           })
         } </div>
-        <div className="row">
-          <div className="col-md-3 text-center upload">
-            <input onChange={ this.handleChange.bind(this) }
-                   id="name-input"
-                   type="text"
-                   placeholder="Track Name">
-            </input>
-          </div>
-          <div className="col-md-3 text-center upload">
-            <input onChange={ this.handleChange.bind(this) }
-                   id="artist-input"
-                   type="text"
-                   placeholder="Artist Name">
-            </input>
-          </div>
-          <div className="col-md-3 text-center upload">
-            <input onChange={ this.handleChange.bind(this) }
-                   id="url-input"
-                   type="text"
-                   placeholder="Track Link">
-            </input>
-          </div>
-          <div className="col-md-3 upload">
-            <button onClick={ this.uploadTrack.bind(this) }>Upload</button>
+        <div className="row dropdown">
+          <button onClick={this.myFunction.bind(this) } className="dropbtn dropelem">Upload Track V</button>
+          <div id="myDropdown" className="dropdown-content text-md-center dropelem">
+            <div className="col-md-12 text-center upload dropelem">
+              <input onChange={ this.handleChange.bind(this) }
+                     id="name-input"
+                     type="text"
+                     className="dropelem"
+                     placeholder="Track Name">
+              </input>
+            </div>
+            <div className="col-md-12 text-center upload dropelem">
+              <input onChange={ this.handleChange.bind(this) }
+                     id="artist-input"
+                     type="text"
+                     className="dropelem"
+                     placeholder="Artist Name">
+              </input>
+            </div>
+            <div className="col-md-12 text-center upload dropelem">
+              <input onChange={ this.handleChange.bind(this) }
+                     id="url-input"
+                     type="text"
+                     className="dropelem"
+                     placeholder="Track Link">
+              </input>
+            </div>
+            <div className="col-md-12 upload dropelem">
+              <button onClick={ this.uploadTrack.bind(this) }>Upload</button>
+            </div>
           </div>
         </div>
+        
         <h3 className="upload-title">Newest Uploads</h3>
         <div> {
           this.state.pages[this.state.trackPage].map(track => {
             return(
               <div className="col-md-12">
-                <div className="row">
-                  <a href={ track.url }><h4>{ track.name }</h4></a>
-                  <h5>{ track.artist }</h5>
-                  <button onClick={ this.thumbs.bind(this, 'up', track.url) }>up { track.thumbs.up }</button>
-                  <button onClick={ this.thumbs.bind(this, 'down', track.url) }>down { track.thumbs.down }</button>
-                  <ReactPlayer url={ track.url }
-                    controls={ true }
-                    height={ 180 }
-                    width="100%"
-                  />
+                <div className="row submission">
+                  <div className="col-xs-1 thumbs text-xs-center">
+                    <div onClick={ this.thumbs.bind(this, 'up', track.url) }
+                       className="arrow">▲
+                    </div>
+                    <div>{ track.thumbs }</div>
+                    <div onClick={ this.thumbs.bind(this, 'down', track.url) }
+                       className="arrow">▼
+                    </div>
+                  </div>
+                  <div className="col-xs-11">
+                    <div className="row">
+                      <a href={ track.url }><h4>{ track.name }</h4></a>
+                      <h5>{ track.artist }</h5>
+                      <ReactPlayer url={ track.url }
+                        className="col-xs-12"
+                        controls={ true }
+                        height={ 150 }
+                        width="100%"
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
             )

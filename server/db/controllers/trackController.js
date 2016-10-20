@@ -7,10 +7,7 @@ module.exports = {
       url: url,
       name: name,
       artist: artist,
-      thumbs: {
-        up: 0,
-        down: 0
-      }
+      thumbs: 0
     }, (err, data) => {
       callback(data);
     });
@@ -27,14 +24,21 @@ module.exports = {
 
     Track.findOne({ url: req.body.url }, (err, track) => {
       if ( req.body.status === 'up') {
-        track.thumbs.up++;
+        track.thumbs++;
       } else {
-        track.thumbs.down++;
+        track.thumbs--;
       }
       thumbs = track.thumbs;
       Track.update({ url: req.body.url }, { thumbs: thumbs }, {}, (err, track) => {
         callback(track);
       })
+    })
+  },
+
+  checkTrackDuplicates: (req, callback) => {
+    Track.find({ url: req.body.url }, (err, data) => {
+      console.log(req.body.url)
+      callback(data);
     })
   }
 }

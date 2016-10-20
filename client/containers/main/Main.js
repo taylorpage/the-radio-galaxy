@@ -1,6 +1,7 @@
 import React from 'react';
 import Nav from '../../components/nav/Nav';
 import Media from '../../components/media/Media';
+import SocialButtons from '../../components/adsAndSocial/socialMedia/socialButtons';
 
 export default class Main extends React.Component {
   constructor(props){
@@ -16,6 +17,7 @@ export default class Main extends React.Component {
         <div className="container">
           <div className="row">
             <div className="col-xs-12 main">
+              <SocialButtons />
               <h1 className="title text-xs-center">The Radio Galaxy</h1>
             </div>
           </div>

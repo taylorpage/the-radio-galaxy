@@ -1,6 +1,7 @@
 const helpers = require('../helpers/helpers');
 const trackController = require('../db/controllers/trackController');
-const userController = require('../db/controllers/userController')
+const userController = require('../db/controllers/userController');
+const articleController = require('../db/controllers/articleController');
 
 module.exports = function(app, express) {
   app.post('/concertSearch', function(req, res) {
@@ -12,6 +13,8 @@ module.exports = function(app, express) {
       res.status(200).send(data);
     });
   })
+  
+  //TRACK ROUTES
 
   app.get('/tracks/all', function(req, res) {
     trackController.getAll(data => {
@@ -32,6 +35,14 @@ module.exports = function(app, express) {
       res.status(200).send(data);
     })
   })
+  app.post('/tracks/duplicates', (req, res) => {
+    trackController.checkTrackDuplicates(req, data => {
+      res.status(200).send(data);
+    })
+  })
+
+  //USER ROUTES
+
   app.post('/user/create', (req, res) => {
     userController.create(req, data => {
       res.status(200).send(data);
@@ -59,6 +70,24 @@ module.exports = function(app, express) {
   })
   app.post('/user/updateVotes', (req, res) => {
     userController.updateVotes(req, data => {
+      res.status(200).send(data);
+    })
+  })
+
+  //ARTICLE ROUTES
+
+  app.get('/articles/all', (req, res) => {
+    articleController.getAll(data => {
+      res.status(200).send(data);
+    })
+  })
+  app.post('/articles/create', (req, res) => {
+    articleController.create(req, data => {
+      res.status(200).send(data);
+    })
+  })
+  app.post('/articles/thumbs', (req, res) => {
+    articleController.thumbs(req, data => {
       res.status(200).send(data);
     })
   })

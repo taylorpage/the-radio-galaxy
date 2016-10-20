@@ -19,7 +19,9 @@ module.exports = {
       location: req.body.location,
       email: req.body.email,
       password: createPassword(req.body.password),
-      tracks: []
+      tracks: [],
+      thumbs: 0,
+      votes: []
     }, (err, data) => {
       callback(data);
     });
