@@ -152,7 +152,7 @@ export default class Articles extends React.Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="container-fluid">
         <div> {
           this.state.errors.map(error => {
             return ( <div className="error"> { error.text } </div> )
@@ -160,8 +160,8 @@ export default class Articles extends React.Component {
         } </div>
         <div className="row dropdown dropelem">
           <button onClick={this.myFunction.bind(this) } className="dropbtn dropelem">Submit Article</button>
-          <div id="myArticleDropdown" className="dropdown-content dropelem text-md-center">
-          <div className="col-md-12 upload dropelem">
+          <div id="myArticleDropdown" className="dropdown-content dropelem text-lg-center">
+          <div className="col-lg-12 upload dropelem">
             <input onChange={ this.handleChange.bind(this) }
                    id="article-title"
                    type="text"
@@ -169,7 +169,7 @@ export default class Articles extends React.Component {
                    placeholder="Headline">
             </input>
           </div>
-          <div className="col-md-12 upload dropelem">
+          <div className="col-lg-12 upload dropelem">
             <input onChange={ this.handleChange.bind(this) }
                    id="article-description"
                    type="text"
@@ -177,7 +177,7 @@ export default class Articles extends React.Component {
                    placeholder="Description">
             </input>
           </div>
-          <div className="col-md-12 upload dropelem">
+          <div className="col-lg-12 upload dropelem">
             <input onChange={ this.handleChange.bind(this) }
                    id="article-url"
                    type="text"
@@ -185,7 +185,7 @@ export default class Articles extends React.Component {
                    placeholder="Article Url">
             </input>
           </div>
-          <div className="col-md-12 upload dropelem">
+          <div className="col-lg-12 upload dropelem">
             <button onClick={ this.uploadArticle.bind(this) }>Upload</button>
           </div>
           </div>
@@ -194,7 +194,7 @@ export default class Articles extends React.Component {
         <div> {
           this.state.pages[this.state.articlePage].map(article => {
             return(
-              <div className="col-md-12">
+              <div className="col-lg-12">
                 <div className="row submission">
                   <div className="col-xs-1 text-xs-center thumbs">
                     <div onClick={ this.thumbs.bind(this, 'up', article.url) }
@@ -205,7 +205,7 @@ export default class Articles extends React.Component {
                          className="arrow">▼
                     </div>
                   </div>
-                  <div className="col-md-11">
+                  <div className="col-lg-11">
                     <a href={ article.url }><h4>{ article.title }</h4></a>
                     <div>{ article.description }</div>
                   </div>
@@ -214,7 +214,7 @@ export default class Articles extends React.Component {
             )
           })
         } </div>
-        <div className="col-md-12"> {
+        <div className="col-lg-12"> {
           this.state.pages.map((item, i) => {
             return (
               <button className="article-pages"

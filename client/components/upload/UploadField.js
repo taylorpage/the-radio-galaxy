@@ -158,7 +158,7 @@ export default class UploadField extends React.Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="container-fluid">
         <div> {
           this.state.errors.map(error => {
             return (
@@ -214,12 +214,12 @@ export default class UploadField extends React.Component {
                        className="arrow">▼
                     </div>
                   </div>
-                  <div className="col-xs-11">
+                  <div className="col-md-11">
                     <div className="row">
                       <a href={ track.url }><h4>{ track.name }</h4></a>
                       <h5>{ track.artist }</h5>
                       <ReactPlayer url={ track.url }
-                        className="col-xs-12"
+                        className="col-md-12"
                         controls={ true }
                         height={ 150 }
                         width="100%"

@@ -46,18 +46,14 @@ body {
   background-position: center;
 }
 
-.media-title {
-  background-color: rgb(30,30,30);
-  color: white;
-  padding: 10px;
-  margin-bottom: 30px;
-}
 .main .title {
   color: white;
-  margin: 8vh;
+  margin-bottom: 100px;
   font-family: 'space';
   font-size: 130px;
   text-shadow: 2px 2px 1px black;
+  position: relative;
+  z-index: 101;
 }
 
 .navbar {
@@ -91,9 +87,21 @@ body {
   font-size: 12px;
   text-decoration: underline;
 }
- .submission {
-   margin-bottom: 30px;
- }
+
+.submission {
+  margin-bottom: 30px;
+}
+.planet {
+  background: url('./greenplanet.png') no-repeat;
+  background-size: 60px 60px;
+  background-position: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 100px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
 
 .upload button {
   width: 200px;
@@ -111,10 +119,6 @@ body {
 
 .track-pages {
   margin: 3px;
-}
-
-.submission p {
-  margin: -5px;
 }
 
 .arrow {

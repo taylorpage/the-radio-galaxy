@@ -13,14 +13,16 @@ export default class Media extends React.Component {
   render() {
     return (
       <div>
+        <div className="container">
+          <MediaNav />
+        </div>
         <div className="container-fluid">
           <div className="row">
             <div className="media-body">
-              <h1 className="media-title">Media</h1>
-              <div className="col-xs-7">
+              <div className="col-lg-7">
                 <UploadField />
               </div>
-              <div className="col-xs-5">
+              <div className="col-lg-5">
                 <Articles />
               </div>
             </div>
