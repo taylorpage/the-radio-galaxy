@@ -5,8 +5,8 @@ export default class SocialButtons extends React.Component {
 
   redirect(outlet) {
     let routes = {
-      facebook: 'http://www.facebook.com',
-      twitter: 'http://www.twitter.com',
+      facebook: 'https://www.facebook.com/theradiogalaxy/',
+      twitter: 'https://twitter.com/radiogalaxyblog',
       soundCloud: 'http://www.soundcloud.com'
     }
     window.location = routes[outlet]

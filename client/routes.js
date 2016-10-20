@@ -5,6 +5,7 @@ import Main from './containers/main/Main';
 import Login from './components/login/Login';
 import Signup from './components/signup/Signup';
 import Articles from './components/articles/Articles';
+import TopTracks from './components/topTracks/TopTracks';
 
 export default(
   <Router>
@@ -12,5 +13,6 @@ export default(
     <Route path='/login' component={ Login }/>
     <Route path='/signup' component={ Signup }/>
     <Route path='/articles' component={ Articles }/>
+    <Route path='/TopTracks' component={ TopTracks }/>
   </Router>
 )

@@ -58,6 +58,8 @@ body {
 
 .navbar {
   background-color: rgb(30,30,30);
+  color: white;
+  padding-bottom: 10px;
 }
 
 .pointer {
@@ -121,6 +123,9 @@ body {
   margin: 3px;
 }
 
+.top-rated {
+  margin-bottom: 30px;
+}
 .arrow {
   cursor: pointer;
 }

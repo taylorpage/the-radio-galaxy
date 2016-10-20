@@ -4,6 +4,7 @@ import ConcertSearch from '../concertSearch/ConcertSearch';
 import UploadField from '../upload/UploadField';
 import Random from '../random/Random';
 import Articles from '../articles/Articles';
+import TopTracks from '../topTracks/TopTracks';
 
 export default class Media extends React.Component {
   constructor(props){
@@ -14,7 +15,7 @@ export default class Media extends React.Component {
     return (
       <div>
         <div className="container">
-          <MediaNav />
+          <TopTracks />
         </div>
         <div className="container-fluid">
           <div className="row">
