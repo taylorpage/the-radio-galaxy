@@ -6,6 +6,7 @@ import Login from './components/login/Login';
 import Signup from './components/signup/Signup';
 import Articles from './components/articles/Articles';
 import TopTracks from './components/topTracks/TopTracks';
+import Marquee from './components/featured/Marquee';
 
 export default(
   <Router>
@@ -14,5 +15,6 @@ export default(
     <Route path='/signup' component={ Signup }/>
     <Route path='/articles' component={ Articles }/>
     <Route path='/TopTracks' component={ TopTracks }/>
+    <Route path='/Marquee' component={ Marquee }/>
   </Router>
 )
