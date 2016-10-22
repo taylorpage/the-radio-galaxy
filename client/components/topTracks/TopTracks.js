@@ -22,7 +22,7 @@ export default class TopTracks extends React.Component {
   	}).then((tracks) => {
   	  let sorted = tracks.data.sort((a,b) => {return (a.thumbs < b.thumbs) ? 1 : ((b.thumbs < a.thumbs) ? -1 : 0);} );
   	  this.setState({
-  	  	tracks: sorted.slice(0, 5)
+  	  	tracks: sorted.slice(0, 6)
   	  })
   	})
   }
@@ -30,10 +30,9 @@ export default class TopTracks extends React.Component {
   render() {
     return (
       <div className="row">
-	      <div className="navbar">
-	        <h5>Top Rated</h5>
-		      <div className="col-lg-12"> 
-		      	<button className="col-xs-1">{ '<' }</button>
+	      <div className="navbar top-tracks">
+		      <div className="col-lg-12">
+            <h4 className="white space">TOP LOCAL TRACKS</h4>
 		      	<div>
 		      	{
 		      	this.state.tracks.map((track) => {
@@ -42,7 +41,7 @@ export default class TopTracks extends React.Component {
 		      			<ReactPlayer
 		      			  url={ track.url }
                   controls={ true }
-                  height={ 80 }
+                  height={ 160 }
                   width='100%'
 		      			/>
 		      			</div>
@@ -50,7 +49,6 @@ export default class TopTracks extends React.Component {
 		      	})
 		      }
 		      </div>
-		      <button className="col-xs-1">{ '>' }</button>
 		      </div>
 		    </div>
       </div>

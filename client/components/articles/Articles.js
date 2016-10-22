@@ -190,7 +190,7 @@ export default class Articles extends React.Component {
           </div>
           </div>
         </div>
-        <h3>Articles</h3>
+        <h1 className="space">ARTICLES</h1>
         <div> {
           this.state.pages[this.state.articlePage].map(article => {
             return(

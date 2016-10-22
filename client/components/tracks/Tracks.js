@@ -5,7 +5,7 @@ import { Link } from 'react-router';
 
 const path = 'http://127.0.0.1:3000'
 
-export default class UploadField extends React.Component {
+export default class Tracks extends React.Component {
   constructor(props){
     super(props);
     this.state = {
@@ -70,8 +70,6 @@ export default class UploadField extends React.Component {
       window.location = `${path}/login`;
     }
 
-    //AXIOS REQUEST
-
     axios.post('/tracks/duplicates', { url: req.url }, data => {
       return data;
     }).then((data) => {
@@ -101,7 +99,6 @@ export default class UploadField extends React.Component {
           errors: [{ text: 'Track has already been uploaded' }]
         })
       }
-      //AXIOS REQUEST
     })
     document.getElementById('url-input').value = '';
     document.getElementById('name-input').value = '';
@@ -199,7 +196,7 @@ export default class UploadField extends React.Component {
           </div>
         </div>
         
-        <h3 className="upload-title">Newest Uploads</h3>
+        <h1 className="upload-title space">NEWEST UPLOADS</h1>
         <div> {
           this.state.pages[this.state.trackPage].map(track => {
             return(
