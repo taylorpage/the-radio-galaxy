@@ -26,10 +26,10 @@ export default class Media extends React.Component {
           <TopTracks />
           <div className="row">
             <div className="media-body">
-              <div className="col-lg-7">
+              <div className="col-lg-6">
                 <Tracks />
               </div>
-              <div className="col-lg-5">
+              <div className="col-lg-6">
                 <Articles />
               </div>
             </div>

@@ -200,3 +200,12 @@ body {
 .top-tracks {
   padding-bottom: 30px;
 }
+
+.track-name {
+  font-size: 18px;
+}
+
+.track-artist {
+  font-size: 14px;
+  margin-top: -20px
+}

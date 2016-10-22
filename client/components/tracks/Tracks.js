@@ -213,12 +213,12 @@ export default class Tracks extends React.Component {
                   </div>
                   <div className="col-md-11">
                     <div className="row">
-                      <a href={ track.url }><h4>{ track.name }</h4></a>
-                      <h5>{ track.artist }</h5>
+                      <a href={ track.url }><p className="track-name">{ track.name }</p></a>
+                      <p className="track-artist">{ track.artist }</p>
                       <ReactPlayer url={ track.url }
                         className="col-md-12"
                         controls={ true }
-                        height={ 150 }
+                        height={ 130 }
                         width="100%"
                       />
                     </div>
