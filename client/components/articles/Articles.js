@@ -206,8 +206,8 @@ export default class Articles extends React.Component {
                     </div>
                   </div>
                   <div className="col-lg-11">
-                    <a href={ article.url }><h4>{ article.title }</h4></a>
-                    <div>{ article.description }</div>
+                    <a href={ article.url }><h5>{ article.title }</h5></a>
+                    <p className="article-description">{ article.description }</p>
                   </div>
                 </div>
               </div>

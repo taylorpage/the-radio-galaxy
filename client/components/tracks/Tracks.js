@@ -3,6 +3,9 @@ import ReactPlayer from 'react-player';
 import axios from 'axios';
 import { Link } from 'react-router';
 
+import { PlayButton, Progress, Icons } from 'react-soundplayer/components';
+import { SoundPlayerContainer } from 'react-soundplayer/addons';
+
 const path = 'http://127.0.0.1:3000'
 
 export default class Tracks extends React.Component {
@@ -200,9 +203,9 @@ export default class Tracks extends React.Component {
         <div> {
           this.state.pages[this.state.trackPage].map(track => {
             return(
-              <div className="col-md-12">
+              <div className="col-md-6">
                 <div className="row submission">
-                  <div className="col-xs-1 thumbs text-xs-center">
+                  <div className="col-xs-2 thumbs text-xs-center">
                     <div onClick={ this.thumbs.bind(this, 'up', track.url) }
                        className="arrow">▲
                     </div>
@@ -211,16 +214,17 @@ export default class Tracks extends React.Component {
                        className="arrow">▼
                     </div>
                   </div>
-                  <div className="col-md-11">
+                  <div className="col-md-10">
                     <div className="row">
                       <a href={ track.url }><p className="track-name">{ track.name }</p></a>
                       <p className="track-artist">{ track.artist }</p>
-                      <ReactPlayer url={ track.url }
-                        className="col-md-12"
-                        controls={ true }
-                        height={ 130 }
-                        width="100%"
-                      />
+                      <div className="col-xs-12">
+                        <ReactPlayer url={ track.url }
+                          controls={ true }
+                          height={ 130 }
+                          width="100%"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
