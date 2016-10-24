@@ -1,7 +1,6 @@
 ### node etc ###
 
-#Ticket Master
-server/config/config.js
+admin/config/
 
 # Logs
 logs

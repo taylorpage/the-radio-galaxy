@@ -8,6 +8,7 @@ import Articles from './components/articles/Articles';
 import TopTracks from './components/topTracks/TopTracks';
 import Marquee from './components/featured/Marquee';
 import Tracks from './components/tracks/Tracks';
+import AdminPage from '../admin/components/AdminPage';
 
 export default(
   <Router>
@@ -18,5 +19,6 @@ export default(
     <Route path='/TopTracks' component={ TopTracks }/>
     <Route path='/Marquee' component={ Marquee }/>
     <Route path='/Tracks' component={ Tracks }/>
+    <Route path='/admin' component={ AdminPage }/>
   </Router>
 )
